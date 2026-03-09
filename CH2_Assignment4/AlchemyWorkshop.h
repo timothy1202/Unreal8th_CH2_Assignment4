@@ -52,13 +52,16 @@ public:
 
     PotionRecipe SearchRecipeByName(std::string potion)
     {
-        for (int i = 0; i < recipes.size(); ++i)
+        for (const auto& recipe : recipes)
         {
-            if (potion == recipes[i].potionName)
-            { return recipes[i];}
+            if (potion == recipe.potionName)
+            {
+                return recipe;
+            }
         }
-        
-        std::cout << potion << "이라는 포션은 존재하지 않습니다" << std::endl;
+
+        // 객체가 없을 때 처리 (예: 빈 이름의 PotionRecipe 객체 반환 혹은 예외 처리)
+        throw std::runtime_error(potion + "은(는) 존재하지 않습니다.");
     }
 
     std::vector<PotionRecipe> searchRecipeByIngredient(std::string ingredient)

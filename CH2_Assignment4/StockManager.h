@@ -12,24 +12,34 @@ private:
 	const int MAX_STOCK = 3;
 
 public:
-	void initializeStock(std::string potionName)
+	void initializeStock(const std::string& potionName)
 	{
-
+		potionStock[potionName] = 3;
 	}
 
-	bool dispensePotion(std::string potionName)
+	bool dispensePotion(const std::string& potionName)
 	{
-
+		if (potionStock[potionName] > 0)
+		{
+			potionStock[potionName]--;
+			return true;
+		}
+		else return false;
 	}
 
-	void returnPotion(std::string potionName)
+	void returnPotion(const std::string& potionName)
 	{
-
+		if (potionStock[potionName] > 3)
+			return;
+		else
+			potionStock[potionName]++;
 	}
 
-	int getStock(std::string potionName)
+	int getStock(const std::string& potionName)
 	{
-
+		if (potionStock[potionName] > 0)
+			return potionStock[potionName];
+		else return 0;
 	}
 
 
